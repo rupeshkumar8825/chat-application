@@ -15,4 +15,11 @@ const webSocketServer = new WebSocket.Server({
 })
 
 
+// now we have to set up the code for connection 
+// here the on connection is an event 
+webSocketServer.on('connection', function(ws){
+    ws.send("Hello from the server!! your connection request has been approved");
+    console.log("The details of the client is as follows \n", ws);
+    // say everything went fine 
+})
 
