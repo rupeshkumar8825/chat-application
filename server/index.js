@@ -2,20 +2,17 @@
 console.log("Hi this is nodejs server");
 
 const express = require("express")
-
 const app = express();
+const WebSocket = require('ws')
+const PORT = 8567;
 
-const PORT = 8000;
 
-app.get("/root", (req, res) => {
-    console.log("The server is up and running and this is the root path for this purpose")
-
-    res.send("the server is up")
+// we have to define the websocket server
+const webSocketServer = new WebSocket.Server({
+    port : PORT
+}, ()=>{
+    console.log("Web socket server is running\n")
 })
 
-// we also have to listen this server at some port for this purpose 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
 
-    // say everything went fine 
-})
+
