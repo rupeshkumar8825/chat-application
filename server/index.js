@@ -26,6 +26,16 @@ webSocketServer.on('connection', function(ws){
     ws.on('message', (data)=>{
         console.log("The message from the client side is as follows \n\n", data.toString());
 
+        // here i am broadcasting the message to all the clients present or has been subscribed with this server for this purpose 
+        webSocketServer.clients.forEach(function each(client){
+            // checking if the connection is open or not then only we will send the data 
+            if(client.readyState == WebSocket.OPEN){
+
+                // sending the data to the client which is active right now or connected right now for this purpose
+                client.send(data)
+            }
+
+        })
         // say everything went fine 
     })
     // say everything went fine 
